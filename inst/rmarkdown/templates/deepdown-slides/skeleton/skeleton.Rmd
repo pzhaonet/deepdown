@@ -64,17 +64,11 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, message = FALSE
 
 ---
 
-## Setup
+## R chunk
 
-To start building your own slides with the help of Markdeep:
-
-1. Clone this repository, or download a zipped version of it from https://github.com/doersino/markdeep-slides/archive/master.zip.
-
-    ```bash
-    $ git clone https://github.com/doersino/markdeep-slides
-    ```
-
-2. Replace the contents of `demo.md.html` with whatever you want your slides to say, but keep the first line and the final lines intact; they're making the magic happen!
+```{r}
+plot(co2)
+```
 
 ---
 
@@ -293,6 +287,7 @@ cgenExpr l (K.TElemR e1 e2 ty) = do
     -- void pointer).
     fromVoidPtr ty c
 ```
+
 [Listing [hask]: An out-of context piece of Haskell code.]
 
 It's possible to reference listings: Consider Listing [hask].

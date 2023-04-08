@@ -54,10 +54,9 @@ With deepdown, you can integrate R codes and their outputs with ASCII diagrams, 
 2. Install RStudio IDE.
 3. Install **deepdown**:
 
-
-~~~~~~~~ r linenumbers
+```{r, eval=FALSE}
 remotes::install_github("pzhaonet/deepdown")
-~~~~~~~~
+```
 
 ## Create a demo file
 
@@ -65,13 +64,11 @@ remotes::install_github("pzhaonet/deepdown")
 
 ## Get a product
 
-Don't click the `knit` button for a deepdown output! A deepdown file works in a different way from a traditional R markdown file.
+You can either click the `knit` button for a deepdown output. Alternatively, you can save the Rmd file as, for example, `dd.Rmd`, and run:
 
-Save the demo file as, for example, `dd.Rmd`, and run:
-
-~~~~~~~~ r linenumbers
+```{r, eval=FALSE}
 deepdown::deepdown("dd.Rmd")
-~~~~~~~~
+```
 
 You will see the output in your web browser.
 

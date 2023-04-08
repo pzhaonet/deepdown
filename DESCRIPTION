@@ -1,7 +1,7 @@
 Package: deepdown
 Version: 0.0.0.0
 Date: 2020-10-18
-Title: Deepdown
+Title: deepdown: When R Markdown meets Markdeep 
 Authors@R: c(
     person("Peng", "Zhao", role = c("aut", "cre"), email = "pengzhao20@outlook.com")
   )
@@ -12,7 +12,7 @@ Imports:
   knitr
 Remotes:
 Suggests:
-Description: [deepdown](https://casual-effects.com/markdeep)
+Description: Embed R code in [Markdeep](https://casual-effects.com/markdeep) documents, books, and slides. 
 License: GPL-3 | file LICENSE
 URL: https://github.com/pzhaonet/deepdown
 BugReports: https://github.com/pzhaonet/deepdown/issues

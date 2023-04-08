@@ -1,0 +1,22 @@
+Package: deepdown
+Version: 0.0.0.0
+Date: 2020-10-18
+Title: Deepdown
+Authors@R: c(
+    person("Peng", "Zhao", role = c("aut", "cre"), email = "pengzhao20@outlook.com")
+  )
+Maintainer: Peng Zhao <pengzhao20@outlook.com>
+Depends: R (>= 3.5.0)
+Imports: 
+  rstudioapi,
+  knitr
+Remotes:
+Suggests:
+Description: [deepdown](https://casual-effects.com/markdeep)
+License: GPL-3 | file LICENSE
+URL: https://github.com/pzhaonet/deepdown
+BugReports: https://github.com/pzhaonet/deepdown/issues
+SystemRequirements: pandoc (>= 2.0; https://pandoc.org)
+RoxygenNote: 7.2.3
+NeedsCompilation: no
+LazyData: true

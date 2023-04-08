@@ -1,0 +1,740 @@
+---
+title: A template of deepdown document
+subtitle: Yet Another R **markdown** Package
+author: Peng Zhao
+date: 2020-10-24
+output: 
+  deepdown::deepdown:
+    class: doc
+    css: # "https://casual-effects.com/markdeep/latest/apidoc.css"  "apidoc.css" "dark.css" "journal.css" "latex.css" "slate.css" "slides.css" "website.css" "newsmag.css"
+    js:  # "local" "https://casual-effects.com/markdeep/latest/markdeep.min.js"
+    paragraph_number: false # false true "¶ " 
+    code_linenumber: true # false true
+    after_body:
+    options:
+      inlineCodeLang: R # R Python C++
+      tocStyle: none # auto none short medium long
+      captionAbove: # false
+      markdeepOptions.captionAbove.listing: # false
+      markdeepOptions.captionAbove.diagram: # false
+      markdeepOptions.captionAbove.image: # false
+      markdeepOptions.captionAbove.table: # false
+      definitionStyle: # auto short long
+      detectMath: # true
+      hideEmptyWeekends: # true
+      lang: # en
+      linkAPIDefinitions: # false
+      mode: # markdeep script html doxygen
+      onLoad: 
+      scrollThreshold: # 80
+      showLabels: # false
+      smartQuotes: # true
+      sortScheduleLists: # true
+  bookdown::word_document2: default
+  bookdown::html_document2: default
+knit: (deepdown::deepdown(rstudioapi::getSourceEditorContext()$path))
+---
+
+```{r hint, echo=FALSE, eval=FALSE}
+`<small>text or image</small>` `<big>text or image</big>``<center>text</center>`
+`![Caption](URL height=140px border="1")` `![Caption](URL width="30%" border="2")`
+!!! note/Tip/WARNING/ERROR: Title
+(2020-10-01): calendar
+```
+
+This is a demonstration for the R package **deepdown** package, which allows you another way of using R **markdown** with some interesting features. 
+
+With deepdown, you can integrate R codes and their outputs with ASCII diagrams, calendars, equations, and other features in plain text documents. Besides R, **deepdown** and **knitr**, you don't have to install anything else. The output file can be viewed by any web browser.
+
+# Quick start
+
+## Installation
+
+1. Install R.
+2. Install RStudio IDE.
+3. Install **deepdown**:
+
+
+~~~~~~~~ r linenumbers
+remotes::install_github("pzhaonet/deepdown")
+~~~~~~~~
+
+## Create a demo file
+
+`R Studio` ==> `New File` ==> `R Markdown` ==> `From Template` ==> `deepdown`.
+
+## Get a product
+
+Don't click the `knit` button for a deepdown output! A deepdown file works in a different way from a traditional R markdown file.
+
+Save the demo file as, for example, `dd.Rmd`, and run:
+
+~~~~~~~~ r linenumbers
+deepdown::deepdown("dd.Rmd")
+~~~~~~~~
+
+You will see the output in your web browser.
+
+## Major Features
+
+It supports basic syntax of R markdown. The major differences and extended features are as follows:
+
+- Videos and audios easily embedded.
+- ASCII diagrams.
+- Built-in mini calendars.
+- Task lists.
+- Built-in notices.
+- Easy cross references of tables, images, listings, and equations.
+- Citations and references.
+- Paragraph numbers and code line numbers.
+- Multi columns for the texts.
+
+# Basic syntax
+
+## Markdown syntax
+
+R **deepdown** inherits all the fundamental syntax of R markdown.
+
+| You type                          | You get                                                      |
+| --- | --- |
+| `*italic*`                        | *italic*                                                     |
+| `**bold**`                        | **bold**                                                     |
+| `~~strikethrough~~` | ~~strikethrough~~ |
+| <code>`inline code`</code> | `inline code` |
+| `$E = mc^2$`                      | equations: $E = mc^2$ |
+| `[link](https://...)`             | [link](https://xjtlu.edu.cn)                       |
+| `![](image)`                      | insert an image                                              |
+| `# Chapter 1`                     | headings                                                     |
+| `1. list...`                      | numbered list                                                |
+| `- list...`                       | unnumbered list                                              |
+
+It also supports the block syntax, such as <code>```</code> for code locks, and  `>` for quotes. R markdown uses will feel easy about this.
+
+## R Markdown support
+
+The core feature of R Markdown, i.e. embedding codes and the output into the document, is inherited. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+## New syntax
+
+| You type              | You get   |
+| --------------------- | --------- |
+| `- [x] task1` | task list |
+| `5 kg/m^3`                               | 5 kg/m^3 |
+| `5 degrees`                              | 5 degrees |
+| `x<sub>below</sub>`                      | x<sub>below</sub> |
+| `<-> <==> -> --> <- <-- ==> <==` | <-> <==> -> --> <- <-- ==> <== |
+| `2 x 3` | 2 x 3 |
+| `<small>text or image</small>`  | small text or image            |
+| `<big>text or image</big>`       | big text or image |
+| `<center>text</center>` | center text |
+
+
+
+
+# Elements
+
+## Videos
+
+Videos can be embedded in the same way as an image.
+
+Embed a video with the file URL like `![Caption](URL)`:
+
+![HES](http://play.xjtlu.edu.cn/sv/54f8b7fc-17195d88845/54f8b7fc-17195d88845.mp4)
+
+or a Youtube link:
+
+![Europe](https://www.youtube.com/watch?v=AjcxPd6Oag8&list=FLs76tyulNUTPSzagsuTA8UA&index=1&t=165s&ab_channel=StanChang)
+
+or a Vimeo link:
+
+![Figure [fig:boy]: The Boy with a Camera For a Face](https://vimeo.com/channels/staffpicks/151493973)
+
+## Audios
+
+Audios can be embedded in the same way as an image.
+
+Embed a video with the file URL:
+
+![A Song](https://gallery.pzhao.org/audio/深情相拥.m4a)
+
+## Images
+
+### Side images
+
+![<small>"Figure [fig:cornell]: [Tiny Planet Clouds](https://www.shadertoy.com/view/ldyXRw)" by Valentin Galea</small>](https://www.cs.williams.edu/~morgan/cs371-f16/image/world.jpg width="30%" border=2)
+Insert a side image with `![Caption](URL width="30%" border=2)`.
+
+Multiple images in one row with `![Caption](URL height=140px border=1)`:
+
+![Figure [spheres]: Perfect spheres and triangles](http://graphicscodex.com/projects/rays/spheres.jpg height=140px border=1) ![Figure [sponza]: Sponza with direct illumination](http://graphicscodex.com/projects/rays/sponza.jpg height=140px border=1) ![Figure [teapot]: Complex indirect lighting](http://graphicscodex.com/projects/rays/teapot.jpg height=140px border=1)
+
+### Reference images
+
+![<small>"[Tiny Planet Clouds](https://www.shadertoy.com/view/ldyXRw)" by Valentin Galea</small>][refimage]
+
+[refimage]: https://www.cs.williams.edu/~morgan/cs371-f16/image/world.jpg width="30%" border="2"
+
+### Cross reference
+
+Use `Figure [label]` in an image caption and cross refer it as `Figure [label]`. For example, see Figure [spheres].
+
+### Directly download
+
+Give a downloading link as `[](URL download)` like: [this link will directly download](http://casual-effects.com/markdeep/robot.jpg download).
+
+## ASCII diagrams
+
+ASCII diagrams are rendered into graphs. You can draw flowcharts, Gannt charts, Tree charts ... with only a text editor. The texts in such charts can be copied directly.
+
+You can inverse the color of the charts:
+
+<div class="inverse">
+ ****************************************************
+ *  .---.              .         .----o----.        *
+ *  |    |             |         |    |    |        *
+ *  |    |  --.   |.-- |   |     *----*<---+        *
+ *  |    |  .-.|  |    +--+      |    |____|        *
+ *  |    | |   |  |    |   |     |    |    |        *
+ *  '---'   '-''  '    '   '     o----o--->'        *
+ ****************************************************
+</div>
+
+Tools are recommended for drawing ASCII diagrams:
+
+- Online: http://asciiflow.com/
+- Online: https://doersino.github.io/markdeep-diagram-drafting-board/
+- Offline: http://www.torchsoft.com/en/aas_information.html
+- Notepad++
+
+An R function `add_frame()`is provided by **deepdown**.
+
+## Notices
+
+You can add five types of notices like this:
+
+```
+!!!
+    I'm a note. Don't mind me, I'm just sitting here.
+
+    This is still more error text.
+
+!!! note
+    Another note.
+
+!!! Tip
+    Close the door on the way out.
+
+!!! WARNING
+    I'm a warning, perhaps. *Something might happen!*
+
+!!! ERROR: Seriously
+    Watch out, something **bad** could happen.
+
+    This is still more error text.
+```
+
+They generates notices:
+
+!!!
+    I'm a note. Don't mind me, I'm just sitting here.
+
+    This is still more error text.
+
+!!! note
+    Another note.
+
+!!! Tip
+    Close the door on the way out.
+
+!!! WARNING
+    I'm a warning, perhaps. *Something might happen!*
+
+!!! ERROR: Seriously
+    Watch out, something **bad** could happen.
+
+    This is still more error text.
+
+## Calendars
+
+Starting with a date, you will get a mini calendar if you make a schedule long enough. The following texts:
+
+```
+2020-10-01: .
+
+2020-10-30: .
+
+2020-11-01: .
+
+2020-12-2: .
+
+```
+
+generates a (almost) blank calendar:
+
+2020-10-01: .
+
+2020-10-30: .
+
+2020-11-01: .
+
+2020-12-2: .
+
+
+
+You can fill the calendar with events:
+
+Tuesday Feb 16, 2016: Project Launch
+
+ - Create specifications
+ - Initialize revision control system
+
+Friday Feb 19, 2016: Build Milestone
+
+ - Build system fully functional
+ - Placeholder unit tests committed
+
+ _Plan for weekend overtime if we miss this milestone_
+
+Wednesday Feb 24, 2016: Site Visit
+ **Whole team vistits client**. Dress appropriately.
+
+Friday Feb 26, 2016: Demo Milestone
+
+ - Internal demonstrations for management
+ - QA reports due
+
+(Monday Feb 29, 2016): Office Closed
+
+Tuesday Mar 1, 2016: Code Freeze
+
+ - Commit final features before this date
+ - Only priority 1 fixes with issue tracking numbers
+   after this point
+
+Monday Mar 7, 2016: Beta
+
+Wednesday Mar 16, 2016: Gold
+
+The leading dates can be in any unambiguous format that includes a month, day, and
+four-digit year between 1000 and 2999, such as:
+
+- 2001-03-01
+- 1 Apr. 1999
+- 4-07-1976
+- February 16, 2016
+- 2020 Jan. 15
+- May 15th, 1982
+
+## Definition Lists
+
+By default, definition lists are displayed tightly:
+
+Grapes
+: Available in purple ("red") and green ("white") varieties.
+
+Bananas
+: Only yellow.
+
+If you need more space, give the first definition multiple lines
+
+Apple
+:   Pomaceous fruit of plants of the genus Malus in  the family Rosaceae.
+
+    Multiple paragraphs are supported.
+
+Orange
+:   The fruit of an evergreen tree of the genus Citrus.
+
+    - Can also
+    - Put lists
+    - In definitions
+
+## Equations	
+
+Besides the `$equation$` and `$$equation$$` syntax, **deepdown** supports the latex equation environment, and cross reference. The syntax is:
+
+```latex
+\begin{equation}
+e^{i \pi} + 1 = 0
+\label{myeq}
+\end{equation}
+
+See Eqn. [myeq]
+```
+
+## Tables
+
+See Table [states] for more.
+
+
+| Maine | Iowa | Colorado |
+| ----- |:----:| -------- |
+| 1     | 4    | 10       |
+| ME    | IA   | CO       |
+| Blue  | Red  | Brown    |
+[Optional caption]
+
+| Maine | Iowa | Colorado |
+| ----- | ---- | -------- |
+| 1     | 4    | 10       |
+| ME    | IA   | CO       |
+| Blue  | Red  | Brown    |
+[Table [states]: Caption with label.]
+
+Tools:
+
+- https://www.tablesgenerator.com/markdown_tables
+
+## Reference links, citation, and cross reference
+
+```
+Hyperlinks:
+- [New York Times](URL)
+- [New York Times][nyt]
+- [Google][]
+
+[nyt]: http://nytimes.com
+[google]: http://google.com
+
+Footnotes:
+- endnotes ^[syntax]
+- endnotes [^syntax]
+
+[^syntax]: Endnotes look like ...
+
+Images:
+- ![caption](URL)
+- ![caption][refimage]
+
+[refimage]: https://www.cs.williams.edu/~morgan/cs371-f16/image/world.jpg width="30%" border="2"
+
+Citations:
+
+- [#Cook84, #Kajiya86]
+
+[#Kajiya86]: James T. Kajiya. 1986. The Rendering Equation. In _Proceedings of Computer Graphics and Interactive Techniques (SIGGRAPH '86)_, ACM, 143-150. http://dx.doi.org/10.1145/15922.15902
+```
+
+
+
+Section [lists] 会自动改为名为“Lists” 一节的编号。
+
+“section”, “subsection”, or “sec.” "chapter"
+
+代码块也可以有 caption 和交叉链接。[Listing [sort]: An insertion sort] 放在代码块下面，交叉引用使用 Listing [sort].
+
+## Embed files
+
+<center>`(insert otherdocument.md.html here)`</center>
+
+<center>`(embed example.py here)`</center>
+
+Advanced Applications*The following features are experimental and may change at any time. See the* *[release history](http://casual-effects.com/markdeep/#history) for change information between versions.*
+
+## TOC (Table of contents)
+
+In the YAML header of the deepdown file, you could set the layout style for the TOC (`tocStyle`). Values are:
+
+- `auto`: Adjust based on the length of the document. (Default)
+- `none`: Do not show a TOC.
+- `short`: Show a short table of level-1 headers on a line across the top of the document.
+- `medium`: Float a small-font full table of contents to the right of the abstract.
+- `long`: Insert a full table of contents in normal font size as the first section after the abstract.
+
+# Formats
+
+## Smart quotes
+
+Smart quotes mean that blockquotes formatted in the style of an actual quotation receive special treatment for fancy quoting like:
+
+> "You want to make it seem alive and effortless and fun, but that's an art that took me 25 years to really learn. I wanted to do it very much 25 years ago, but I didn't know how."
+> 
+>   -- David O. Russell, director of American Hustle
+
+Double ASCII quotation marks are converted to proper Unicode quotation marks by detecting which side of a word they are on.
+
+You can switch this feature on/off in the YAML `smartQuotes`.
+
+## Line Numbers of code blocks
+
+Line numbers of code blocks can be displayed if you use `linenumbers ` after the language name, such as `R linenumbers`.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ R linenumbers
+data(cars)
+plot(cars)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## Inline code language
+
+The inline code can be syntax highlighted if you set `inlineCodeLang` in the YAML. It does not affect fenced code blocks.
+
+A specific span can be forced to a language by using the HTML syntax, e.g., `<code lang=Python>...</code>`. 
+
+```
+bash cs C# cpp C++ css coffeescript html XML http JSON java JavaScript Makefile` `markdown objectivec Objective-C PHP perl python ruby shell armasm glsl go haskell` `kotlin lisp lua matlab R rust scheme swift tex typescript yaml PyxlScript none
+```
+
+## Unnumbered sections
+
+(##) Unnumbered H2
+
+## Paragraph Numbering
+
+You can set the YAML  `paragraph_number` so as to display paragraph numbers.
+
+## Unicode (in UTF-8 encoding)
+
+You could directly use unicode characters, such as Asian characters and punctuation, Greek letters and maths. Here is a frequently used list:
+
+- Matching pairs «»‹›“”‘’〖〗【】「」『』〈〉《》〔〕
+- Greek ΑΒΓΔ ΕΖΗΘ ΙΚΛΜ ΝΞΟΠ ΡΣΤΥ ΦΧΨΩ αβγδ εζηθ ικλμ νξοπ ρςτυ φχψω
+- Currency ¤ $ ¢ € ₠ £ ¥
+- Common symbols © ® ™ ² ³ § ¶ † ‡ ※
+- Bullets •◦ ‣ ✓ ●■◆ ○□◇ ★☆ ♠♣♥♦ ♤♧♡♢
+- Phonetic ᴁ ᴂ ᴈ
+- Music ♩♪♫♬♭♮♯
+- Punctuation “” ‘’ ¿¡ ¶§ª - ‐ ‑ ‒ – — ― …
+- Accents àáâãäåæç èéêë ìíîï ðñòóôõö øùúûüýþÿ ÀÁÂÃÄÅ Ç ÈÉÊË ÌÍÎÏ ÐÑ ÒÓÔÕÖ ØÙÚÛÜÝÞß
+- Math ° ⌈⌉ ⌊⌋ ∏ ∑ ∫ ×÷ ⊕ ⊖ ⊗ ⊘ ⊙ ⊚ ⊛ ∙ ∘ ′ ″ ‴ ∼ ∂ √ ≔ × ⁱ ⁰ ¹ ² ³ ₀ ₁ ₂ π ∞ ± ∎
+- Logic & Set Theory ∀¬∧∨∃⊦∵∴∅∈∉⊂⊃⊆⊇⊄⋂⋃
+- Relations ≠≤≥≮≯≫≪≈≡
+- Sets ℕℤℚℝℂ
+- Arrows ←→↑↓ ↔ ↖↗↙↘ ⇐⇒⇑⇓ ⇔⇗ ⇦⇨⇧⇩ ↞↠↟↡ ↺↻ ☞☜☝☟
+- Computing ⌘ ⌥ ‸ ⇧ ⌤ ↑ ↓ → ← ⇞ ⇟ ↖ ↘ ⌫ ⌦ ⎋⏏ ↶↷ ◀▶▲▼ ◁▷△▽ ⇄ ⇤⇥ ↹ ↵↩⏎ ⌧ ⌨ ␣ ⌶ ⎗⎘⎙⎚ ⌚⌛ ✂✄ ✉✍
+- Digits ➀➁➂➃➄➅➆➇➈➉
+- Religious and cultural symbols ✝✚✡☥⎈☭☪☮☺☹☯☰☱☲☳☴☵☶☷
+- Dingbats ❦☠☢☣☤♲♳⌬♨♿ ☉☼☾☽ ♀♂ ♔♕♖ ♗♘♙ ♚♛ ♜♝♞♟
+
+## URL Arguments
+
+You can add `export` or `noformat` to any **deepdown** document URL to alter how it is displayed, i.e. `URL?export`, `URL?noformat`. For example, `http://foo.bar/index.html?export` shows the HTML output.
+
+`noformat` displays the original source of the document. Due to web browser limitations, in some cases this will not be 100% accurate to the actual file source.
+
+`export` makes the displayed body HTML source code produced by Markdeep. This is useful for exporting a Markdeep document to HTML if you need to paste it into some context, such as an ePub book or Blog site, that does not allow scripts.
+
+
+
+## Multi-columns
+
+The following fence can format the texts within it into two columns:
+
+```
+<div style="columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em">
+texts
+</div>
+```
+
+<div style="columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em">
+You can use the CSS
+[columns](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Columns/Using_multi-column_layouts)
+style to make an HTML multicolumn block. Then, just use regular Markdeep within it and the
+browser will automatically apply your multicolumn layout. 
+Browsers are even smart enough to break the columns correctly when
+printing to PDF or to a printer. However, for a long document,
+multiple columns don't work well when displayed on screen. That's
+because there are no discrete "pages" on screen to break columns. So,
+the browser will make each column as long as the entire document,
+which is probably not what you want.
+So, multi-column only works well if you know that you have very short
+sections (as in this example), or if you were planning on printing to
+separate pages when done.
+</div>
+
+## Page Breaks
+
+To support other markdown conventions, `\pagebreak` and `\newpage` will insert a page break in a document when printed or converted to PDF. You can also use a pattern of a series of five `+` signs on their own line, which will form a horizontal rule on screen and a new page when printed.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+To make top-level section headers also force page breaks, add the following to your
+document or CSS file:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<style>.md h1, .md .nonumberh1 {page-break-before:always}</style>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## CSS
+
+Markdeep uses CSS for styling. That means you can embed a style sheet
+to override anything that you don't like about the built-in styling.
+For example, if you don't want section numbering, just use:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<style>h1:before, h2:before { content: none; }</style>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Markdeep uses Markdown's syntax, even where I disagree with the
+choices.  But you aren't stuck with that. Do you wish that Markdown
+had specified single-asterisk for `*bold*`? You can have
+that:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<style>em.asterisk { font-style: normal; font-weight: bold; }</style>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each of the list bullets (`+`, `-`, `*`) has its own CSS class. You
+can use this, for example, to make `+` entries bold and `-` ones
+use a circle:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<style>
+  li.plus { font-weight: bold; } 
+  li.minus { list-style-type: circle;}
+</style>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Options
+
+Markdeep looks in the `window.markdeepOptions` object to determine its behavior. The legal options are:
+
+- `mode`
+
+  A String that can be:`'markdeep'` - the default: process the document as Markdeep`'script'` - do not modify the document`'html'` - process the document as HTML with embedded Markdeep nodes`'doxygen'` - process special tags in Doxygen documentation
+
+- `lang`
+
+  An Object describing the natural language to use for keywords such as Section and Figure. (If your language is already supported by Markdeep, it is much easier to set this via a `<meta lang="...">` tag in the document.) Look at the value of the global variable `FRENCH` in the source code to see the structure of this Object.
+
+- `tocStyle`
+
+  A String specifying the layout style for the table of contents. Values are:`'auto'` - Adjust based on the length of the document. (Default)`'none'` - Do not show a table of contents`'short'` - Show a short table of level-1 headers on a line across the top of the document`'medium'` - Float a small-font full table of contents to the right of the abstract`'long'` - Insert a full table of contents in normal font size as the first section after the abstract
+
+- `scrollThreshold`
+
+  A Number specifying the distance in pixels that the body can be scrolled before the `scrolled` class should be added to the `body` element. This is useful for creating CSS styles for web page headers that present differently when the document is first shown versus scrolled down to the contents. The default is 80.
+
+- `definitionStyle`
+
+  A String specifying the layout style for definition lists. Values are:`'auto'` - Adjust based on the longest definition in each list. (Default)`'short'` - Always format as a table, where definitions are in a column on the left.`'long'` - Always format using a hanging indent, where the definitions are under the terms.
+
+- `hideEmptyWeekends`
+
+  A Boolean specifying whether the calendar views from schedule lists should remove weekend days if there are no events on them. The default is `true`.
+
+- `detectMath`
+
+  A Boolean that defaults to `true`. If true, when LaTeX math surrounded by `$...$`, `\(...\)`, or `\begin{...}...\end{...}` is encountered, the MathJax processor is automatically loaded from their CDN. Set to `false` if you don't use math notation, host MathJax locally and include it using a script tag yourself, or use an alternative math processor.
+
+- `showLabels`
+
+  A Boolean that defaults to `false`. Display all labels for Figures, Listings, and Tables, as well as URLs for images with captions, the document itself, and links. This is useful when printing proofs of book chapters.
+
+- `sortScheduleLists`
+
+  A Boolean that defaults to `true`. Sort schedules in order of increasing date, regardless of the order in which events appear in the source document.
+
+- `captionAbove`
+
+  A table mapping `diagram`, `image`, `listing`, and `table` to Booleans. Each defaults to `false`, meaning that captions appear below (after) the objects. Set values to true to move the captions above (before) the objects. Example: `markdeepOptions.captionAbove.listing = true`. In the Markdeep source document, captions must always appear *after* the object. This option only affects where they appear when the document is viewed.
+
+- `onLoad`
+
+  Function invoked after Markdeep is done processing the document and the DOM is ready.
+
+- `linkAPIDefinitions`
+
+  Boolean that defaults to `false`. If true, inline code referencing a `variable` or `function()` is linked to a definition list that also uses inline code formatting for that `variable` or `function(args...)`. There must be no space between a function name and the opening paren. Names must be fully qualified.
+
+- `inlineCodeLang`
+
+  String name of a supported syntax highlighting language, such as `'Python'` or `'C++'`. If set, ``inline code`` set off in back-ticks is be syntax highlighted using that language. A specific span can be forced to a language by using the HTML syntax, e.g., `<code lang=Python>...</code>`. Does not affect fenced code blocks.
+
+- `smartQuotes`
+
+  Boolean that defaults to `true`. If true, double ASCII quotation marks are converted to proper Unicode quotation marks by detecting which side of a word they are on.
+
+# Further readings
+
+- http://casual-effects.com/markdeep/
+- Demos:
+- [API documentation](https://morgan3d.github.io/quadplay/doc/manual.md.html)
+- [Syllabus](https://www.cs.williams.edu/~morgan/cs371-f16/?)
+- [Game design document](http://casual-effects.com/gamejam/babybat/index.html)
+- [Homework assignment](http://graphicscodex.com/projects/rays/index.html)
+- [Lecture slides](http://db.inf.uni-tuebingen.de/staticfiles/teaching/ss17/advanced-sql/slides/advanced-sql-00.pdf)
+- [Software library website](https://morgan3d.github.io/include.js/)
+- [Game report](http://casual-effects.com/gamejam/topburn/index.html)
+- [Blog 1](http://momentsingraphics.de/), [Blog 2](https://morgan3d.github.io/articles/2019-04-08-first-vr/)
+- [Curriculum Vitae (Resume)](https://casual-effects.com/morgan/cv.md.html)
+- [Thesis](https://github.com/doersino/markdeep-thesis)
+
+# To do
+
+- [Write thesis](https://github.com/doersino/markdeep-thesis)
+- [Make slides](https://github.com/doersino/markdeep-slides)
+
+# Acknowledgement
+
+**deepdown** is built on **Markdeep** by Morgan McGuire ([Casual Effects](http://casual-effects.com/))  and **knitr**.
+
+# License
+
+Markdeep is open source. You may use, extend, and redistribute Markdeep without charge under the terms of the [BSD license](https://opensource.org/licenses/BSD-2-Clause):
+
+```
+      Copyright 2015-2019, Morgan McGuire
+      All rights reserved.
+
+      Redistribution and use in source and binary forms, with or without modification, 
+      are permitted provided that the following conditions are met:
+
+      1. Redistributions of source code must retain the above copyright notice, this
+      list of conditions and the following disclaimer.
+
+      2. Redistributions in binary form must reproduce the above copyright notice, this
+      list of conditions and the following disclaimer in the documentation and/or other
+      materials provided with the distribution.
+
+      THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+      ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+      WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+      IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+      INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+      BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+      DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+      LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+      OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+      THE POSSIBILITY OF SUCH DAMAGE.
+    
+```
+
+Markdeep includes highlight.js, so you are also bound by its BSD license:
+
+```
+      Copyright (c) 2006, Ivan Sagalaev
+      All rights reserved.
+
+      Redistribution and use in source and binary forms, with or without modification, are 
+      permitted provided that the following conditions are met:
+      
+      * Redistributions of source code must retain the above copyright notice, this list of
+      conditions and the following disclaimer.
+      * Redistributions in binary form must reproduce the above copyright notice, this list 
+      of conditions and the following disclaimer in the documentation and/or other materials
+      provided with the distribution.
+      * Neither the name of highlight.js nor the names of its contributors may be used to 
+      endorse or promote products derived from this software without specific prior written 
+      permission.
+      
+      THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY EXPRESS OR 
+      IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+      MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+      THE REGENTS AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+      EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+      SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+      HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR 
+      TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+      SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    
+```

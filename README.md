@@ -1,3 +1,5 @@
+中文简介见[统计之都论坛](https://d.cosx.org/d/424254-di-po-dang-fa-bu-yi-ge-xue-cang-san-nian-de-guan-yu-markdown-de-r-bao-deepdown)。
+
 # Introduction
 
 The R package **deepdown** allows you another way of using R **markdown** with some interesting features inherited from [Markdeep](http://casual-effects.com/markdeep/). With **deepdown**, you can create documents, books, and slides with integrating R codes and their outputs, ASCII diagrams, calendars, equations, and other features in plain text documents. Besides the R language, you have to install nothing more than the **deepdown** and **knitr** packages. The output file can be viewed by any web browser.
